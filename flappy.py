@@ -99,7 +99,7 @@ def menu_window():
 def game_window():
 
     score = 0
-
+    pygame.mixer.music.play(-1)
     AUDIO["wing"].play()
     floor_gap = IMAGES["floor"].get_width() - WIDTH
     floor_x = 0
@@ -152,6 +152,7 @@ def game_window():
         #判斷失敗(掉下去或是撞到水管)
         if bird.rect.y > FLOOR_Y or bird.rect.y < 0 or pygame.sprite.spritecollideany(bird, pipe_group):
             bird_dying = True
+            pygame.mixer.music.stop()
             AUDIO["hit"].play()
             AUDIO["die"].play()
             result = {"bird":bird,"pipe_group":pipe_group,"score":score}
